@@ -5,4 +5,4 @@ if __name__ == '__main__':
     import interface
 
     interface.app.debug = True
-    interface.app.run()
+    interface.app.run(host='0.0.0.0')
