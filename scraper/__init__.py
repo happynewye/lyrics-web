@@ -42,7 +42,6 @@ class Scraper(object):
         """Fetch lyrics, trying each source in turn. Return a string or
         None if no lyrics were found.
         """
-        print('fetching lyrics for', title, 'by', artist)
         artist = remove_featuring(artist)
 
         for backend in self.backends:

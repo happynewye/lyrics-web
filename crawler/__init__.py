@@ -49,12 +49,9 @@ class Crawler(object):
             mbid=x['id']
             ) for x in response]
 
-        print(len(results))
         results = set(results)
-        print(len(results))
 
         for song in results:
-            print('processing', song.title, 'by', song.artist)
             self.process_song(song)
 
     def listen(self, collection='query'):
