@@ -9,6 +9,7 @@ COMMENT_RE = re.compile(r'<!--.*-->', re.S)
 BREAK_RE = re.compile(r'<br\s*/?>')
 TAG_RE = re.compile(r'<[^>]*>')
 DIV_RE = re.compile(r'<(/?)div>?')
+FETCH_URL_TIMEOUT=5
 
 URL_CHARACTERS = {
     '\u2018': "'",
@@ -30,7 +31,7 @@ def fetch_url(url):
     is unreachable.
     """
     # TODO: handle this error more gracefully
-    return urllib.request.urlopen(url).read()
+    return urllib.request.urlopen(url, timeout=FETCH_URL_TIMEOUT).read()
 
 def unescape(text):
     """Resolves &#xxx; HTML entities (and some others)."""
