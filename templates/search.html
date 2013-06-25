@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Search Results </h1>
+    <h3> Query: {{query}} </h3>
+    <h3> Results: </h3>
+    <ol>
+        {% for song in results %}
+            <li>
+                <a href='/lyric/{{song.id}}/'>
+                    {{song}}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

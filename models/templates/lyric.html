@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> {{recording.title}} </h1>
+    <h3> {{recording.artist}} </h3>
+    <a href=/delete/{{recording._id}}/> This is wrong! </a>
+    <p style="white-space: pre-wrap; word-wrap: break-word;"> {{lyric}} </h3>
+{% endblock %}

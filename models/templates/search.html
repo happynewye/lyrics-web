@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> Search Results </h1>
+    <h3> Query: {{query}} </h3>
+    <h3> Internal Results: </h3>
+    <ol>
+        {% for recording in internal_results %}
+            <li>
+                <a href='/view_lyric/{{recording._id}}/'>
+                    {{recording}}
+                </a>
+            </li>
+        {% endfor %}
+    </ol>
+    <h3> External Results: </h3>
+    <ol>
+        {% for recording in external_results %}
+            <li>
+                <a href='/add_lyric/{{recording.mbid}}/'>{{recording}}</a>
+            </li>
+        {% endfor %}
+    </ol>
+{% endblock %}

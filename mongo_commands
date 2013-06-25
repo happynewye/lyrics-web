@@ -1,0 +1,5 @@
+db = db.getSiblingDB("admin")
+db.runCommand( { setParameter: 1, textSearchEnabled: true } )
+
+use test
+db.song.ensureIndex({artist: 'text', title: 'text'})

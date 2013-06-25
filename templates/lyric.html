@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1> {{song.title}} </h1>
+    <h3> {{song.artist}} </h3>
+    <p style="white-space: pre-wrap; word-wrap: break-word;"> {{song.get_best_lyric()}} </h3>
+{% endblock %}
