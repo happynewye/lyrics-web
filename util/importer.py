@@ -10,7 +10,7 @@ db = client.test
 for n_song in db.target.find():
     mbid = n_song.get('mbid', None)
     if not mbid:
-        break
+        continue
     song = Song.objects(mbid=mbid)
     if not song:
         song = Song(
