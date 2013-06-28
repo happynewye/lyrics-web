@@ -7,6 +7,7 @@ connect('test')
 client = MongoClient()
 db = client.test
 
+print('hello')
 for n_song in db.target.find():
     mbid = n_song.get('mbid', None)
     if not mbid:

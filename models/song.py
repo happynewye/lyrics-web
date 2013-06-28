@@ -1,7 +1,9 @@
 from mongoengine import *
 from difflib import SequenceMatcher as fuzzy
+import datetime
 
 from models.lyric import Lyric
+
 
 class Song(Document):
     title = StringField(
@@ -21,6 +23,8 @@ class Song(Document):
             required=True)
 
     lyrics = ListField(EmbeddedDocumentField(Lyric))
+
+    added = DateTimeField(default=datetime.datetime.now)
 
     def add_lyric(self, new_lyric_string, source):
         # check if new lyric is similar enough to

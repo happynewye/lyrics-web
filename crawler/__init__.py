@@ -8,6 +8,9 @@ from bson.objectid import ObjectId
 
 from pymongo import MongoClient
 
+from analytics.analytics import Source
+source = Source('crawler')
+
 client = MongoClient()
 
 connect('test')
@@ -19,14 +22,19 @@ scraper = Scraper()
 
 class Crawler(object):
     def process_song(self, song):
+        source.track('processing_song')
         if (SeenRecording.objects(mbid=song.mbid)):
-                return
+            source.track('seen_song')
+            return
         SeenRecording(mbid=song.mbid).save()
         if Song.objects(mbid=song.mbid):
+            source.track('already_present')
             # We already have the song
             return
         lyric = scraper.get_lyrics(artist=song.artist, title=song.title)
+        source.track('searching_for_lyric')
         if lyric:
+            source.track('found_lyric')
             song.add_lyric(lyric['string'], lyric['source'])
             song.save()
 
@@ -69,5 +77,6 @@ class Crawler(object):
                 self.process_query(item['query'])
                 db.query.update({'_id': ObjectId(item['_id'])}, {'$set': {'status': 'done'}})
             else:
+                source.track('crawl_empty')
                 print('empty')
                 sleep(1)

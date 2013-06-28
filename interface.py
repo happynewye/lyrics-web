@@ -1,8 +1,8 @@
 """ Flask based web interface.
 """
 
-from analytics.track import Track
-track = Track()
+from analytics.analytics import Source
+source = Source('server')
 
 
 from flask import Flask, request
@@ -22,7 +22,7 @@ def track_total_time(req):
     """ Track the total time spent handling the request.
     """
     dt = time.monotonic() - request.start_time
-    track.request(request, dt)
+    source.track('request', dt=dt)
     return req
 
 # Import all the files in the 'views' directory.
